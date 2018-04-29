@@ -1,0 +1,43 @@
+---
+title: "Vacation Time"
+author: "David Bread, April 25, 2018"
+output: 
+  html_document: 
+    fig_width: 13
+    fig_height: 8
+---
+
+```{r setup, include=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+```
+
+Here's my summer vacation itinerary this year!
+
+```{r, echo=FALSE, warning=FALSE}
+
+library(leaflet)
+
+  lng <- c(-6.2818, -7.9490, -7.9863, -8.1978, -8.4372, -8.4475, -6.1967)
+  lat <- c(53.3991, 53.4232, 53.3263, 53.0565, 52.9361, 52.8089, 53.3088)
+  
+  df <- data.frame(lng,lat)
+  
+  loc <- c("Day 1: Arrive Dublin, Ireland", "Day 2: Athelone! Home of the mythical 'perfect pint'.","Day 3: Clonmacnoise: Ancient Christian monastary and brewery", "Day 4: Terryglass: Quaint town", "Day 5: Mountshannon: Quainter town (in competition with Terryglass", "Day 6: Killaloe: Lots of sheep, wool and pottery","Day 7: Back to Dublin, then home to Brooklyn")
+
+    df %>%
+    leaflet() %>%
+      addTiles() %>%
+       setView(lng = -7.5000, lat =  53.3000, zoom = 9) %>%
+        addMarkers(lng = lng, lat = lat, popup=loc)  
+  
+```
+
+
+
+```{r echo=FALSE, eval=FALSE}
+
+#rsconnect::deployApp("week2_assignment.rmd") #uploads project to shinyapp.io
+#https://crustybread.shinyapps.io/week2_assignment/  public url to project on shinayapp.io
+
+```
